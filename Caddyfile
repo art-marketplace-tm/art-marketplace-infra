@@ -1,0 +1,40 @@
+# Caddy config for dev environment on artmarketplace.duckdns.org.
+# Caddy auto-obtains Let's Encrypt certs for each site via HTTP-01.
+# DuckDNS auto-resolves any *.artmarketplace.duckdns.org subdomain
+# to the main IP, so no per-subdomain DNS setup needed.
+
+{
+    # Contact email for Let's Encrypt expiry notices.
+    email admin@artmarketplace.duckdns.org
+}
+
+api-dev.artmarketplace.duckdns.org {
+    # Serve public product images from MinIO under /media/*.
+    # Backend sets S3_PUBLIC_URL to .../media, so it emits URLs like
+    # /media/<bucket>/<key>; handle_path strips the /media/ prefix and
+    # passes the remaining bucket+key path to MinIO.
+    handle_path /media/* {
+        reverse_proxy minio:9000
+    }
+
+    # Everything else goes to FastAPI.
+    handle {
+        reverse_proxy backend:8000
+    }
+
+    encode zstd gzip
+    log {
+        output stdout
+        format console
+    }
+}
+
+admin-dev.artmarketplace.duckdns.org {
+    reverse_proxy admin-panel:80
+    encode zstd gzip
+}
+
+app-dev.artmarketplace.duckdns.org {
+    reverse_proxy app-client:80
+    encode zstd gzip
+}

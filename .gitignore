@@ -1,0 +1,8 @@
+.env
+.env.local
+.env.*.local
+!.env.example
+!.env.dev.example
+!.env.prod.example
+.DS_Store
+*.swp
