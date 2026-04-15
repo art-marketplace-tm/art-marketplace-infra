@@ -10,19 +10,18 @@ Deployment and orchestration for the Art Marketplace platform.
                     │  (reverse   │
                     │   proxy)    │
                     └──────┬──────┘
-              ┌────────────┼────────────┐
-              ▼            ▼            ▼
-     ┌────────────┐ ┌──────────┐ ┌──────────┐
-     │  Backend   │ │  Admin   │ │   App    │
-     │  (FastAPI) │ │ (Flutter │ │ (Flutter │
-     │            │ │   nginx) │ │   nginx) │
-     └─────┬──────┘ └──────────┘ └──────────┘
-           │
-     ┌─────┼─────────┐
-     ▼     ▼         ▼
-  ┌─────┐ ┌─────┐ ┌─────┐
-  │ PG  │ │Redis│ │MinIO│
-  └─────┘ └─────┘ └─────┘
+                           ▼
+                    ┌────────────┐
+                    │  Backend   │   ← Frontend (admin + public app)
+                    │  (FastAPI) │     being migrated to Next.js;
+                    │            │     containers will be added back
+                    └─────┬──────┘     once the new stack is ready.
+                          │
+                    ┌─────┼─────────┐
+                    ▼     ▼         ▼
+                 ┌─────┐ ┌─────┐ ┌─────┐
+                 │ PG  │ │Redis│ │MinIO│
+                 └─────┘ └─────┘ └─────┘
 ```
 
 All application containers are pre-built Docker images pulled from GitHub Container Registry (GHCR).
@@ -33,9 +32,8 @@ No source code lives on the server.
 | Repo | Purpose | Image |
 |------|---------|-------|
 | [art-marketplace-api](https://github.com/art-marketplace-tm/art-marketplace-api) | FastAPI backend | `ghcr.io/art-marketplace-tm/art-marketplace-api:dev` |
-| [art-marketplace-admin](https://github.com/art-marketplace-tm/art-marketplace-admin) | Admin dashboard | `ghcr.io/art-marketplace-tm/art-marketplace-admin:dev` |
-| [art-marketplace-app](https://github.com/art-marketplace-tm/art-marketplace-app) | Public app | `ghcr.io/art-marketplace-tm/art-marketplace-app:dev` |
 | **art-marketplace-infra** (this) | Deployment config | — |
+| _Next.js admin & public app_ | _TBD — replacing the archived Flutter repos_ | _TBD_ |
 
 ## Quick start (server)
 
@@ -58,14 +56,14 @@ docker compose -f docker-compose.prod.yml up -d
 cp .env.example .env
 docker compose up -d
 
-# Then run backend + Flutter apps locally (see their READMEs)
+# Then run backend (and Next.js apps once they exist) locally — see their READMEs
 ```
 
 ## URLs
 
 | Service | Dev URL |
 |---------|---------|
-| Admin panel | https://admin-dev.artmarketplace.duckdns.org |
-| Public app | https://app-dev.artmarketplace.duckdns.org |
 | API | https://api-dev.artmarketplace.duckdns.org |
 | API docs | https://api-dev.artmarketplace.duckdns.org/docs |
+| Admin panel | _reserved: https://admin-dev.artmarketplace.duckdns.org (Next.js, not yet deployed)_ |
+| Public app | _reserved: https://app-dev.artmarketplace.duckdns.org (Next.js, not yet deployed)_ |

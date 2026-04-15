@@ -13,11 +13,11 @@
 
 | Service | URL |
 |---|---|
-| Admin panel | https://admin-dev.artmarketplace.duckdns.org |
-| Public app | https://app-dev.artmarketplace.duckdns.org |
 | API backend | https://api-dev.artmarketplace.duckdns.org |
 | API docs | https://api-dev.artmarketplace.duckdns.org/docs |
 | Health check | https://api-dev.artmarketplace.duckdns.org/health |
+| Admin panel | _reserved: https://admin-dev.artmarketplace.duckdns.org — Next.js, not yet deployed_ |
+| Public app | _reserved: https://app-dev.artmarketplace.duckdns.org — Next.js, not yet deployed_ |
 
 ## SSH Access
 
@@ -43,23 +43,22 @@ SSH key on Windows: `C:\Users\user\.ssh\id_ed25519`
 | Repo | Purpose |
 |---|---|
 | [art-marketplace-api](https://github.com/art-marketplace-tm/art-marketplace-api) | FastAPI backend |
-| [art-marketplace-admin](https://github.com/art-marketplace-tm/art-marketplace-admin) | Flutter admin panel |
-| [art-marketplace-app](https://github.com/art-marketplace-tm/art-marketplace-app) | Flutter public app |
 | [art-marketplace-infra](https://github.com/art-marketplace-tm/art-marketplace-infra) | Deployment config |
+| _Next.js admin + public app_ | _TBD — replacing archived Flutter repos_ |
 
 ## Docker Containers
 
 | Container | Service |
 |---|---|
 | `art-backend` | FastAPI API |
-| `art-admin-panel` | Flutter admin (nginx) |
-| `art-app-client` | Flutter public app (nginx) |
 | `art-caddy` | Reverse proxy (TLS, routing) |
 | `art-postgres` | Database |
 | `art-redis` | Cache / Celery broker |
 | `art-minio` | Object storage (images) |
 | `art-celery-worker` | Background task runner |
 | `art-celery-beat` | Scheduled tasks |
+
+> Admin and public-app containers were Flutter and have been removed. The Next.js replacements will appear here once deployed.
 
 ## Everyday Commands
 

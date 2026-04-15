@@ -6,8 +6,7 @@ This repo is cloned on the production/dev server and orchestrates all services.
 
 ## Related repos (all under art-marketplace-tm org)
 - **art-marketplace-api** — FastAPI backend → `ghcr.io/art-marketplace-tm/art-marketplace-api:dev`
-- **art-marketplace-admin** — Flutter admin panel → `ghcr.io/art-marketplace-tm/art-marketplace-admin:dev`
-- **art-marketplace-app** — Flutter public app → `ghcr.io/art-marketplace-tm/art-marketplace-app:dev`
+- _Frontend (admin + public app) is being migrated to Next.js. The old Flutter repos are archived; new repo names TBD._
 
 ## What's in this repo
 ```
@@ -25,7 +24,7 @@ This repo is cloned on the production/dev server and orchestrates all services.
 ```
 
 ## How deployment works
-Each code repo (api, admin, app) has its own GitHub Actions workflow:
+Each code repo has its own GitHub Actions workflow:
 1. Developer pushes to `dev` branch
 2. GitHub Actions builds Docker image
 3. Image pushed to GHCR (ghcr.io/art-marketplace-tm/...)
@@ -39,9 +38,8 @@ Each code repo (api, admin, app) has its own GitHub Actions workflow:
 - **Path:** `/home/deploy/art-marketplace/` (this repo)
 
 ## Subdomains
-- https://admin-dev.artmarketplace.duckdns.org — Admin panel
-- https://app-dev.artmarketplace.duckdns.org — Public app
 - https://api-dev.artmarketplace.duckdns.org — API + docs
+- `admin-dev.*` and `app-dev.*` are reserved for the new Next.js stack (currently no service bound)
 
 ## Common operations
 ```bash
@@ -53,7 +51,6 @@ bash ~/art-marketplace/scripts/deploy-dev.sh
 
 # View logs:
 docker logs art-backend --tail 100
-docker logs art-admin-panel --tail 50
 
 # Restart single service:
 docker restart art-backend

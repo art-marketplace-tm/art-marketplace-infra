@@ -3,7 +3,7 @@
 ## Goals
 
 1. **High quality, well-structured code** that can evolve without rewrites.
-2. **Multi-platform frontend** — a single Flutter codebase for iOS, Android, and web.
+2. **Web-first frontend** — Next.js (App Router) for SEO, fast first paint, and image optimization. Mobile is out of scope for now.
 3. **Three languages** from day one: Armenian, English, Russian.
 4. **Future-proof domain model** — single-vendor today, multi-vendor tomorrow with a migration rather than a rewrite.
 5. **Pragmatic MVP scope** — no payments yet; the buyer submits a request and the admin confirms offline.
@@ -19,7 +19,7 @@
 | Storage | MinIO (dev) → Cloudflare R2 (prod) | S3-compatible; R2 has zero egress cost, ideal for an image-heavy site |
 | Auth | JWT (access + refresh) | Stateless, no server-side session store |
 | Images | Pillow | Thumbnails, WebP/AVIF, watermarking |
-| Frontend | Flutter (bloc + GetIt + GoRouter) | One codebase, all platforms |
+| Frontend | Next.js (App Router) + Tailwind | SEO via SSR, automatic image optimization, fast iteration for a web-only marketplace |
 
 ## Clean Architecture — backend layout
 

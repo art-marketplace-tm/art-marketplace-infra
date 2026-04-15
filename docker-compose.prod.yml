@@ -122,20 +122,6 @@ services:
     networks:
       - art-net
 
-  admin-panel:
-    image: ghcr.io/art-marketplace-tm/art-marketplace-admin:dev
-    container_name: art-admin-panel
-    restart: unless-stopped
-    networks:
-      - art-net
-
-  app-client:
-    image: ghcr.io/art-marketplace-tm/art-marketplace-app:dev
-    container_name: art-app-client
-    restart: unless-stopped
-    networks:
-      - art-net
-
   caddy:
     image: caddy:2-alpine
     container_name: art-caddy
@@ -150,8 +136,6 @@ services:
       - caddy_config:/config
     depends_on:
       - backend
-      - admin-panel
-      - app-client
     networks:
       - art-net
 

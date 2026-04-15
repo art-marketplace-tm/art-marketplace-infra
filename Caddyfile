@@ -29,12 +29,7 @@ api-dev.artmarketplace.duckdns.org {
     }
 }
 
-admin-dev.artmarketplace.duckdns.org {
-    reverse_proxy admin-panel:80
-    encode zstd gzip
-}
-
-app-dev.artmarketplace.duckdns.org {
-    reverse_proxy app-client:80
-    encode zstd gzip
-}
+# Frontend stacks (admin + public app) are being migrated to Next.js.
+# Their Caddy site blocks will be re-added when the new containers
+# come online. Until then, the subdomains will return Caddy's default
+# 404 — DuckDNS still resolves them but no service is bound.

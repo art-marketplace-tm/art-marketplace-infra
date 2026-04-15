@@ -1,7 +1,8 @@
 name: art-marketplace-dev
 
 # Local development: only infrastructure services.
-# Backend, admin-panel, and app-client run directly on the host.
+# Backend runs directly on the host. Frontend stacks are being
+# migrated to Next.js — they will run on the host too during dev.
 
 services:
   postgres:

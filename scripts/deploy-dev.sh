@@ -4,7 +4,7 @@ set -euo pipefail
 cd ~/art-marketplace
 
 echo "=== Pulling latest images ==="
-docker compose -f docker-compose.prod.yml pull backend celery-worker celery-beat admin-panel app-client
+docker compose -f docker-compose.prod.yml pull backend celery-worker celery-beat
 
 echo "=== Restarting services ==="
 docker compose -f docker-compose.prod.yml up -d
